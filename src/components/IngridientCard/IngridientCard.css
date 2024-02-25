@@ -1,0 +1,19 @@
+.ingridient-card{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+     min-width: 200px; 
+     max-width: 200px;
+     min-height: 220px;
+     max-height: 220px;
+     margin: 0 1rem 0 0; 
+     text-align: center;
+     padding: 2rem;
+}
+
+.ingridient-card img {
+    width: 100%;
+    min-height: 120px;
+    max-height: 120px;
+    height: 120px;
+    object-fit: contain;
+    object-position: center;
+}
