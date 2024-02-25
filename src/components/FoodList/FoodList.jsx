@@ -12,10 +12,9 @@ const FoodList = ({foodData,page}) => {
      {
         paginatedList.current.length >0 
          && 
-        paginatedList.current.map((food,i)=>
+        paginatedList.current.map((food)=>
          <FoodItem 
-          key={food.id} 
-          no={i}  
+          key={food.id}  
           foodItemId={food.id}  
           foodItemName={food.title} 
           foodItemImg={food.image}

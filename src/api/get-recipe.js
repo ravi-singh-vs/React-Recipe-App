@@ -15,14 +15,13 @@ export const getRecipe = async(id) =>{
           else
           throw new Error('some error occured');
       }
-
-
+      
       const data = await res.json();
 
       return {success : true, data : data}
 
    } catch (error) {
-      alert(error.message)
+       alert(error.message)
       return {success : false, error : error.message};
     }
 }

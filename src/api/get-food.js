@@ -7,12 +7,10 @@ export const getFood = async(query) =>{
    try {
       const res =  await fetch(`${VITE_API_URL}/complexSearch?apiKey=${VITE_API_KEY}&query=${query}`);
       console.log("reponse",res)
-      if(!res.ok || !res.length)
+      if(!res.ok)
       {
-         if(!res.length)
-          throw new Error(FOOD_RESPONSES['404'])
-
-          else if(FOOD_RESPONSES[res.status])
+        
+          if(FOOD_RESPONSES[res.status])
           throw new Error(FOOD_RESPONSES[res.status]);
          
           else
@@ -20,6 +18,11 @@ export const getFood = async(query) =>{
       }
 
       const data = await res.json();
+
+      if(!data.totalResults)
+      {
+         throw new Error(FOOD_RESPONSES['404'])
+      }
 
       return {success : true, data : data.results}
 

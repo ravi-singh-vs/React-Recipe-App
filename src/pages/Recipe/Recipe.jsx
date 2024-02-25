@@ -4,35 +4,34 @@ import { useParams } from 'react-router-dom'
 import { getRecipe } from '../../api/get-recipe'
 import './Recipe.css'
 import IngridientCard from '../../components/IngridientCard/IngridientCard'
-
-
 const Recipe = ({error,setError}) => {
 
   const [recipeData , setRecipeData] = useState(null);
-  const [ingridients ,setIngridients] = useState([])
+  const [ingridients ,setIngridients] = useState([]);
   const {id} = useParams();
 
+  const fetchRecipe =  async() =>{
+    const res = await getRecipe(id);
+    if (res.success){
+        setError(null);
+
+        setRecipeData(res.data);
+
+        const ingridientsList = Array.from(new Set(res.data?.extendedIngredients
+                                    ?.map(obj => obj.name)))
+                                    ?.map(name =>res.data?.extendedIngredients
+                                    ?.find(obj => obj?.name === name));
+        setIngridients(ingridientsList);    
+    }
+    else{
+        setError(res.error);
+    }
+  }
+
   useEffect(()=>{
-    (async() =>{
-      const res = await getRecipe(id);
-      if (res.success){
-          setError(null);
-
-          setRecipeData(res.data);
-
-          const ingridientsList = Array.from(new Set(res.data?.extendedIngredients
-                                      ?.map(obj => obj.name)))
-                                      ?.map(name =>res.data?.extendedIngredients
-                                      ?.find(obj => obj?.name === name));
-          setIngridients(ingridientsList);
-      }
-      else{
-          setError(res.error);
-          alert(res.error);
-      }
-    })()
+    fetchRecipe();
   },[])
-  return (
+  return (    
     <Content>
        <div className='Recipe'>
         {
@@ -56,14 +55,14 @@ const Recipe = ({error,setError}) => {
             <h1>Ingridients</h1>
             <div className='ingridients-list'>
               {
-                ingridients.length>0 &&  ingridients.map((item)=><IngridientCard ingName={item.name} ingImg={item.image} />)
+                ingridients.length>0 &&  ingridients.map((item)=><IngridientCard key={item.name} ingName={item.name} ingImg={item.image} />)
               }
             </div>
            </div>
            <ol className='recipe-instructions'>
             <h1>Instructions</h1>
             {
-              recipeData.analyzedInstructions[0].steps.map((step)=><li key={step.number}>{step.step}</li>)
+              recipeData && recipeData.analyzedInstructions[0] && recipeData.analyzedInstructions[0].steps.map((step)=><li key={step.number}>{step.step}</li>)
             }
            </ol>
           </>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Search.css';
 import { getFood } from '../../api/get-food';
-const Search = ({setFoodData, error,setError}) => {
+const Search = ({setFoodData, error,setError,}) => {
 
   const [query,setQuery] = useState("");
 
@@ -9,11 +9,13 @@ const Search = ({setFoodData, error,setError}) => {
 
     e.preventDefault();
 
+
     const res = await getFood(query);
 
     if (res.success)
     {
         setError(null);
+        console.log("Dattatat",res.data)
         setFoodData(res.data);
     }
     else
