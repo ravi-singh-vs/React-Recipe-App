@@ -1,4 +1,4 @@
-# React Modal with React Portals
+# React Recipe App
 
 ## Author :  Ravi Singh
 
