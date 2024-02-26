@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import './Search.css';
 import { getFood } from '../../api/get-food';
-const Search = ({setFoodData, error,setError,}) => {
+const Search = ({setFoodData}) => {
 
   const [query,setQuery] = useState("");
 
@@ -14,14 +14,8 @@ const Search = ({setFoodData, error,setError,}) => {
 
     if (res.success)
     {
-        setError(null);
         console.log("Dattatat",res.data)
         setFoodData(res.data);
-    }
-    else
-    {
-        setError(res.error);
-        alert(res.error)
     }
   }
   return (
@@ -31,4 +25,4 @@ const Search = ({setFoodData, error,setError,}) => {
   )
 }
 
-export default Search
+export default memo(Search)

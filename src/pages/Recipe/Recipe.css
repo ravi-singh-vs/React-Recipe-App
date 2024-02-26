@@ -3,6 +3,10 @@
 }
 .Recipe h1{
     text-align: center;
+    color: gray;
+    border-bottom: 1px solid gray;
+    padding-bottom: 1rem;
+    font-weight: 500;
 }
 .Recipe .recipe-banner{
     display: flex;

@@ -27,7 +27,6 @@ export const getFood = async(query) =>{
       return {success : true, data : data.results}
 
    } catch (error) {
-      console.log("error")
       alert(error.message)
       return {success : false, error : error.message};
     }

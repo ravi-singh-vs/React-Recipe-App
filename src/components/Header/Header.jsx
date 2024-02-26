@@ -8,9 +8,8 @@ const Header = () => {
             <img src={logo} alt="logo" width={100} />
         </div>
         <h1>Food App</h1>
-        
     </header>
   )
 }
 
-export default Header
+export default Header;

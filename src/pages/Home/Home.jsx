@@ -3,18 +3,18 @@ import Content from '../../components/Content/Content'
 import Search from '../../components/Search/Search'
 import FoodList from '../../components/FoodList/FoodList'
 import Pagination from '../../components/Pagination/Pagination'
-import Loader from '../../components/Loader/Loader'
-const Home = ({error,setError}) => {
+
+const Home = () => {
   
   const [page, setPage] = useState(1);
   const [foodData , setFoodData] = useState([]);
 
   return (
     <Content>
-      <Search setFoodData={setFoodData} error={error} setError={setError}/>
+      <Search setFoodData={setFoodData}/>
       <FoodList foodData={foodData} page={page}/>
       {
-        foodData.length >0 && <Pagination page={page} setPage={setPage} foodData={foodData}/>
+        foodData.length > 0 && <Pagination page={page} setPage={setPage} totalItems={foodData.length}/>
       }
     </Content>
   )

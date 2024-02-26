@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { getRecipe } from '../../api/get-recipe'
 import './Recipe.css'
 import IngridientCard from '../../components/IngridientCard/IngridientCard'
-const Recipe = ({error,setError}) => {
+const Recipe = () => {
 
   const [recipeData , setRecipeData] = useState(null);
   const [ingridients ,setIngridients] = useState([]);
@@ -13,7 +13,6 @@ const Recipe = ({error,setError}) => {
   const fetchRecipe =  async() =>{
     const res = await getRecipe(id);
     if (res.success){
-        setError(null);
 
         setRecipeData(res.data);
 
@@ -22,9 +21,6 @@ const Recipe = ({error,setError}) => {
                                     ?.map(name =>res.data?.extendedIngredients
                                     ?.find(obj => obj?.name === name));
         setIngridients(ingridientsList);    
-    }
-    else{
-        setError(res.error);
     }
   }
 
@@ -46,8 +42,8 @@ const Recipe = ({error,setError}) => {
             <ul className='recipe-details'>
                 <li>Time to prepare : {recipeData.readyInMinutes} Minutes</li>
                 <li>Serves :  {recipeData.servings} </li>
-                <li>{recipeData.vegetarian ? "🥬 Vegetarian" : " 🍖 Non-Vegetarian"}</li>
-                <li>{recipeData.vegan ? "Vegan" : "Non-Vegan"}</li>
+                <li>{recipeData.vegetarian ? '🥬 Vegetarian' : ' 🍖 Non-Vegetarian'}</li>
+                <li>{recipeData.vegan ? 'Vegan' : 'Non-Vegan'}</li>
                 <li>Price per serving : $ {(recipeData.pricePerServing/83).toFixed(2)}</li>
             </ul>
            </div>
@@ -55,7 +51,7 @@ const Recipe = ({error,setError}) => {
             <h1>Ingridients</h1>
             <div className='ingridients-list'>
               {
-                ingridients.length>0 &&  ingridients.map((item)=><IngridientCard key={item.name} ingName={item.name} ingImg={item.image} />)
+                ingridients.length>0 &&  ingridients.map((item)=><IngridientCard key={item.id} ingName={item.name} ingImg={item.image} />)
               }
             </div>
            </div>
@@ -66,8 +62,7 @@ const Recipe = ({error,setError}) => {
             }
            </ol>
           </>
-        }
-       
+        }  
        </div>
     </Content>
   )

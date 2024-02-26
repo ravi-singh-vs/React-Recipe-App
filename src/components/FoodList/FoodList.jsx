@@ -1,18 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import './FoodList.css'
 import FoodItem from '../FoodItem/FoodItem'
 const {VITE_LIMIT} = import.meta.env;
 
 const FoodList = ({foodData,page}) => {
-    const paginatedList = useRef([]);
-    const skip = (page-1)*VITE_LIMIT;
-    paginatedList.current = foodData.filter((food,ind)=> ind>=skip && ind<skip+Number(VITE_LIMIT));
+
+  const startIdx = (page-1)*VITE_LIMIT;
+
+  const endIdx = Math.min(startIdx + Number(VITE_LIMIT), foodData.length);
+  
+  const paginatedFoodData = foodData.slice(startIdx,endIdx);
+
   return (
     <div className='food-list-container'>
      {
-        paginatedList.current.length >0 
+        paginatedFoodData.length > 0 
          && 
-        paginatedList.current.map((food)=>
+         paginatedFoodData.map((food)=>
          <FoodItem 
           key={food.id}  
           foodItemId={food.id}  
