@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className='app'>
-         <Router>
+        <Router>
          <Header/>
          <Routes>
            <Route path='/' element={<Home />}/>
