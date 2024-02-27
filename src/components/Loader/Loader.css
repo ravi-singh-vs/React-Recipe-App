@@ -1,49 +1,11 @@
-.spinner {
-    position:absolute;
-    transform:translate(-50%,-50%);
-    top:50%;
-    left:50%;
-    width: 200px;
-    height: 100px;
-    text-align: center;
+
+
+  .Loader{
+     height: 100vh;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+  }
+  .Loader h1{
     z-index: 1000;
-    font-size: 30px;
   }
-  
-  .spinner > div {
-    background-color: #fff;
-    height: 100%;
-    width: 8px;
-    display: inline-block;
-    margin-right: 0.6rem;
-    animation: meregang 1.2s infinite ease-in-out;
-  }
-  
-  .spinner .react2 {
-    animation-delay: -1.1s;
-  }
-  
-  .spinner .react3 {
-    animation-delay: -1s;
-  }
-  
-  .spinner .react4 {
-    animation-delay: -0.9s;
-  }
-  
-  .spinner .react5 {
-    animation-delay: -0.8s;
-  }
-  
-  @keyframes meregang {
-    0%,
-    40%,
-    100% {
-      transform: scaleY(0.4);
-    }
-    20% {
-      background-color: blue;
-      transform: scaleY(1);
-    }
-  }
-  

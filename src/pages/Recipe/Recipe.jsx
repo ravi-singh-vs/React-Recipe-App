@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Content from '../../components/Content/Content'
 import { useParams } from 'react-router-dom'
 import { getRecipe } from '../../api/get-recipe'
 import './Recipe.css'
@@ -28,7 +27,6 @@ const Recipe = () => {
     fetchRecipe();
   },[])
   return (    
-    <Content>
        <div className='Recipe'>
         {
           recipeData 
@@ -64,7 +62,6 @@ const Recipe = () => {
           </>
         }  
        </div>
-    </Content>
   )
 }
 
